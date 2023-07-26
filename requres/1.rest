@@ -1,0 +1,22 @@
+GET  https://secretlittleboy-solid-chainsaw-4p4grg65wwxhgxq-3000.preview.app.github.dev/
+
+###
+GET https://secretlittleboy-solid-chainsaw-4p4grg65wwxhgxq-3000.preview.app.github.dev/info
+
+###
+GET https://secretlittleboy-solid-chainsaw-4p4grg65wwxhgxq-3000.preview.app.github.dev/api/persons
+
+###
+GET https://secretlittleboy-solid-chainsaw-4p4grg65wwxhgxq-3000.preview.app.github.dev/api/persons/1
+
+###
+DELETE https://secretlittleboy-solid-chainsaw-4p4grg65wwxhgxq-3000.preview.app.github.dev/api/persons/1
+
+###
+POST https://secretlittleboy-solid-chainsaw-4p4grg65wwxhgxq-3000.preview.app.github.dev/api/persons
+Content-Type: application/json
+
+{
+    "name": "John Doe bbb",
+    "number": "123-456-7890"
+}
