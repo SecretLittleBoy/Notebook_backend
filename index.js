@@ -1,6 +1,27 @@
 const express = require('express');
 const app = express();
 app.use(express.json());
+/*const requestLogger = (request, response, next) => {
+    console.log('Method:', request.method)
+    console.log('Path:  ', request.path)
+    console.log('Body:  ', request.body)
+    console.log('---')
+    next()
+}
+app.use(requestLogger);*/
+const morgan = require('morgan');
+// 自定义日志格式，使用 ':data' 占位符来显示 POST 请求中的数据
+const postFormat = '[:method] :url :status :response-time ms - :res[content-length] :data';
+// 创建自定义 token 'data' 来获取 POST 请求中的数据
+morgan.token('data', (req) => {
+  if (req.method === 'POST') {
+    return JSON.stringify(req.body);
+  }
+  return '';
+});
+// 使用自定义格式
+app.use(morgan(postFormat));
+
 const port = 3000;
 let phoneBook = [
     { 
@@ -78,4 +99,8 @@ app.post('/api/persons', (req, res) => {
     phoneBook = phoneBook.concat(person);
     res.json(person);
 });
+const unknownEndpoint = (request, response) => {
+    response.status(404).send("<h1>404 NOT FOUND</h1>")
+}  
+app.use(unknownEndpoint)
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));
