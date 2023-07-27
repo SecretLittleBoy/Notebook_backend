@@ -24,7 +24,7 @@ morgan.token('data', (req) => {
 // 使用自定义格式
 app.use(morgan(postFormat));
 
-const port = 3000;
+const port = process.env.PORT || 3000;
 let phoneBook = [
     { 
       "id": 1,
